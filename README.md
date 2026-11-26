@@ -1,114 +1,34 @@
-# SmartRead – Study & Reward Timer
+# Fokus
 
-A simple Android app to study in focused blocks and take short reward breaks. Set your study time and reward time; the app runs **Study → Reward → Study** in a loop so you keep a steady rhythm.
+Fokus is a native Android Pomodoro timer for reading, studying, working, and exercising. A new install starts with 25 minutes of focus and a 5-minute break.
 
-![Android](https://img.shields.io/badge/Platform-Android-green)  
-![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF)  
-![Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4)
+## Using Fokus
 
----
+- **Timer** shows the countdown and local clock. Pick an activity, then start, pause, resume, or end a block. Completed focus blocks are logged automatically. You can also save a shorter block when you end it early.
+- **Full-screen clock** opens from the clock icon. Switch between analog and digital on a black background. Use the rotation button to lock the clock in landscape on supported phones.
+- **Activities** holds your books, courses, tasks, workouts, and other activities. Items can be edited, archived, and restored. Archiving keeps their session history available.
+- **Tree** grows from saved focus time, including manually logged sessions. Longer sessions contribute more, and new stages also require focus on different days. The seven-day view shows recent activity and your current streak.
+- **Insights** compares today, the last 7 days, or the last 30 days with the preceding period of the same length. Filter by activity, inspect a session’s start and end times, or log a completed session manually with optional notes.
+- **Settings** lets you customize both durations, auto-start breaks, and choose a light, dark, or system appearance.
 
-## Features
+## Android permissions
 
-| Feature | Description |
-|--------|-------------|
-| **Study & reward timers** | Set study (1–120 min) and reward (1–60 min). Large countdown shows current phase and remaining time. Start, Pause, Resume, Reset. |
-| **Subject tracking** | Assign a subject (e.g. Math, Physics) per session. Use “Only one subject (General)” or switch subjects. Active subject shown while the timer runs. |
-| **History** | Completed study blocks are saved with subject, times, and date. Open **History** from the header to review past sessions. |
-| **Study & exam tips** | Open **Tips** (lightbulb) for short advice on time management, study techniques, focus & memory, exam day, and mindset. |
-| **Notifications & alarm** | When a phase ends you get a notification and a 10-second alarm, even if the app is in the background (notification permission on Android 13+). |
-| **Light / dark theme** | Toggle theme with the sun/moon button in the header. |
-| **Custom times** | Use +/- or type values in the study and reward fields; validation keeps values in range. |
+Focus mode uses an app-owned Do Not Disturb rule. Grant Do Not Disturb access when enabling it. The rule runs during active focus blocks and releases on pause, stop, or break. Android manages notification exceptions.
 
----
+Enable timer alerts to get completion notifications. On Android 12 and later, grant **Precise background alerts** if you want Android to finish timers reliably while the phone is idle.
 
-## Screenshots
+**Lock-screen progress** posts a live countdown. Your phone’s lock-screen and always-on display settings determine what it can show. **Keep screen on** is available for the in-app timer and full-screen clock.
 
-_Add screenshots of the timer screen, settings, history, and tips here._
+## Build
 
----
+Use JDK 17 or later and Android SDK 36. Fokus supports Android 8.0 and later.
 
-## Tech Stack
-
-- **Language:** Kotlin  
-- **UI:** Jetpack Compose, Material 3  
-- **Architecture:** ViewModel + StateFlow for timer state  
-- **Persistence:** SharedPreferences + JSON for history  
-- **Min SDK:** 26 | **Target / Compile SDK:** 36  
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Android Studio (latest stable)
-- JDK 11+
-- Android device or emulator (API 26+)
-
-### Clone & run
-
-```bash
-git clone https://github.com/YOUR_USERNAME/SmartRead.git
-cd SmartRead
+```powershell
+.\gradlew.bat :app:assembleDebug :app:testDebugUnitTest
 ```
 
-Open the project in Android Studio, sync Gradle, then run on a device or emulator (Run ▶️).
+The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`.
 
-### Build release APK
+Fokus keeps the former app’s Android package ID so an in-place update can import SmartRead study history. Installation over a previous build requires the same signing key.
 
-```bash
-./gradlew assembleRelease
-```
-
-APK output: `app/build/outputs/apk/release/`
-
----
-
-## How to use
-
-1. **Set times** – When idle, set study and reward minutes (and subject if not using “Only one subject”).
-2. **Start** – Tap **Start** to begin the study countdown.
-3. **Phase switch** – When study ends, reward countdown starts; when reward ends, study starts again. Notifications and alarm fire at each phase change.
-4. **Pause / Resume** – Use **Pause** and **Resume** as needed.
-5. **Reset** – **Reset** returns to idle and keeps your study/reward/subject settings.
-6. **History** – Tap the history icon to see past sessions.
-7. **Tips** – Tap the lightbulb to read study and exam tips.
-
----
-
-## Project structure
-
-```
-app/src/main/
-├── java/com/example/smartread/
-│   ├── MainActivity.kt           # Entry, theme, notifications/sound wiring
-│   ├── history/
-│   │   ├── StudySessionRecord.kt # Session data + JSON
-│   │   └── HistoryRepository.kt  # Load/save history
-│   ├── timer/
-│   │   ├── TimerPhase.kt         # Idle, Study, Reward
-│   │   ├── StudyTimerViewModel.kt # Timer state & logic
-│   ├── tips/
-│   │   └── StudyTips.kt         # Tips content
-│   ├── ui/
-│   │   ├── TimerScreen.kt        # Main UI, settings, countdown, history/tips sheets
-│   │   └── theme/               # Colors, typography, theme
-│   └── utils/
-│       ├── NotificationHelper.kt
-│       └── AlarmSoundHelper.kt
-└── res/
-    ├── drawable-nodpi/          # App logo
-    ├── mipmap-anydpi/           # Launcher icons
-    └── values/                  # Strings, themes
-```
-
----
-
-## License
-
-This project is open source. Use it for learning or as a base for your own study timer.
-
----
-
-**SmartRead** – Study for a set time, take a short reward, repeat.
+Fokus bundles Manrope and Inter for offline use. Their SIL Open Font Licenses are packaged with the app.

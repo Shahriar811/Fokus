@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.SmartRead" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Fokus" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#0D1310</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:colorAccent">#165B40</item>
+    </style>
+    <style name="Theme.Fokus.Clock" parent="Theme.Fokus">
+        <item name="android:windowBackground">#101713</item>
+    </style>
 </resources>

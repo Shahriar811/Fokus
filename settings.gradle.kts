@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Smart Read"
+rootProject.name = "Fokus"
 include(":app")
  
